@@ -22,7 +22,7 @@ import NotFound from './Dashboard/Notfound';
 function App() {
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route element={<AuthContext />}>
           <Route path='/login' element={<LogIn />}></Route>
