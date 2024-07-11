@@ -22,7 +22,7 @@ import NotFound from './Dashboard/Notfound';
 function App() {
 
   return (
-    <BrowserRouter basename="/">
+    <BrowserRouter basename="/client">
       <Routes>
         <Route element={<AuthContext />}>
           <Route path='/login' element={<LogIn />}></Route>
