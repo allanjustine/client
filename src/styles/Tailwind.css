@@ -1,0 +1,54 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.neonb{
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
+    transition: fill 1s ease, transform 1s ease-in-out;
+    transform-origin: center center;
+}
+
+.neona{
+    filter: drop-shadow(0 0 10px rgba(54, 162, 235, 0.5));
+    transition: fill 1s ease, transform 1s ease-in-out;
+    transform-origin: center center;
+}
+
+.neona:hover {
+    transform: scale(1.04);
+    fill: dodgerblue;
+}
+
+.neonb:hover {
+    transform: scale(1.02);
+    fill: #FF2400;
+}
+
+.sidebar button {
+    position: relative;
+    transition: transform 0.5s ease-in-out;
+}
+
+.sidebar button::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0; 
+    height: 2px;
+    background-color: rgb(147, 197, 253); 
+    transform: translateX(-50%) scaleX(0); 
+    transform-origin: bottom center;
+    transition: width 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.sidebar button:hover:not(.active)::after {
+    width: 100%;
+    transform: translateX(-50%) scaleX(1);
+    transform-origin: bottom;
+}
+
+.sidebar button:focus::after {
+    width: 0; 
+    transform: translateX(-50%) scaleX(0);
+}
