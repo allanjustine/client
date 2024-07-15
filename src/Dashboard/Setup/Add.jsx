@@ -17,8 +17,7 @@ import Swal from "sweetalert2";
 import axios from "../../api/axios";
 import { format } from "date-fns";
 
-function Add({ isOpen, onClose, onSubmit }) {
-  const [user, setUser] = useState("");
+function Add({ isOpen, onClose, onSubmit, refresh }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [searchTerm, setSearchTerm] = useState("");
@@ -32,7 +31,6 @@ function Add({ isOpen, onClose, onSubmit }) {
   const [computer, setComputer] = useState({
     computer_user: "",
   });
-  const [vacant, setVacant] = useState(false);
   const [vloading, setvLoading] = useState(true);
   const [verror, setvError] = useState(false);
 
@@ -64,10 +62,7 @@ function Add({ isOpen, onClose, onSubmit }) {
     };
 
     fetchUnit();
-    const intervalId = setInterval(fetchUnit, 2000);
-
-    return () => clearInterval(intervalId);
-  }, [vacant]);
+  }, [refresh]);
 
   useEffect(() => {
     const fetchComputerUser = async () => {
@@ -151,8 +146,8 @@ function Add({ isOpen, onClose, onSubmit }) {
 
   const handleSubmitAssignedUser = async (event) => {
     event.preventDefault();
-    setVacant(true);
     onSubmit(true);
+    setLoading(true);
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -222,8 +217,8 @@ function Add({ isOpen, onClose, onSubmit }) {
         console.log("ERROR!");
       }
     } finally {
-      setVacant(false);
       onSubmit(false);
+      setLoading(false);
     }
   };
 
@@ -494,7 +489,7 @@ function Add({ isOpen, onClose, onSubmit }) {
                     disabled={loading || checkedRows.length === 0}
                     type="submit"
                     className={
-                      checkedRows.length === 0
+                      loading || checkedRows.length === 0
                         ? "w-24 h-8 ml-3 text-sm font-semibold text-white bg-green-300 rounded-full cursor-not-allowed"
                         : "w-24 h-8 ml-3 text-sm font-semibold text-white bg-green-600 rounded-full"
                     }

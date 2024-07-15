@@ -3,7 +3,6 @@ import SideBar from "../Sidebar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCirclePlus,
-  faRightFromBracket,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
@@ -23,7 +22,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "../../api/axios";
 import Swal from "sweetalert2";
 import { format } from "date-fns";
-import { data } from "../../data/vacantUnitsData";
 import { TableContainer } from "@material-ui/core";
 import Select from "react-select";
 import Header from "../../Dashboard/Header";
@@ -255,7 +253,7 @@ const SearchableDropdown = ({
         onFocus={handleInputFocus}
       />
       {isOpen && (
-        <ul className="absolute z-20 w-full mt-1 text-justify bg-white border border-gray-300 rounded-xl top-full">
+        <ul className="absolute z-20 w-full mt-1 overflow-y-auto text-justify bg-white border border-gray-300 rounded-xl top-full max-h-60">
           {Array.isArray(filteredOptions) && filteredOptions.length > 0 ? (
             filteredOptions.map((option) => (
               <li
@@ -285,12 +283,10 @@ const CustomTableA = ({ rows, setRows, onSubmit }) => {
   const [error, setError] = useState();
   const [validationErrors, setValidationErrors] = useState({});
   const [success, setSuccess] = useState();
-  const [status, setStatus] = useState("");
   const [categorySearchTerms, setCategorySearchTerms] = useState([""]);
   const [supplierSearchTerms, setSupplierSearchTerms] = useState([""]);
   const options = [
     { value: "Vacant", label: "Vacant" },
-    { value: "Used", label: "Used" },
     { value: "Defective", label: "Defective" },
   ];
 

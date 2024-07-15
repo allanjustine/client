@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 function Backg() {
   return (
-    <div className='absolute inset-0 bg-cover bg-center' style={{ backgroundImage: `url(${bg})`, zIndex: -1 }}>
+    <div className='absolute inset-0 bg-center bg-cover' style={{ backgroundImage: `url(${bg})`, zIndex: -1 }}>
       <div className='absolute inset-0 bg-white opacity-90'></div>
     </div>
   );
@@ -110,9 +110,9 @@ function Reset() {
     <div>
       <Backg />
       <div className='flex flex-col items-center pt-20' style={{ zIndex: 1 }}>
-        <img src={smct} alt="SMCT Logo" className='w-72 h-32 m-0 block'></img>
-        <h1 className="text-4xl font-bold mt-5">COMPUTER MONITORING SYSTEM</h1>
-        <h1 className="text-4xl font-medium mt-2 mb-10">Reset Password</h1>
+        <img src={smct} alt="SMCT Logo" className='block h-32 m-0 w-72'></img>
+        <h1 className="mt-5 text-xl font-bold md:text-4xl">COMPUTER MONITORING SYSTEM</h1>
+        <h1 className="mt-2 mb-10 text-4xl font-medium">Reset Password</h1>
         <form onSubmit={handleResetPassword}>
           <FormControl sx={{ m: 1, width: '40ch' }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
@@ -185,11 +185,11 @@ function Reset() {
               )}
             </span>
           </FormControl> <br />
-          <div className='text-red-500 text-sm ml-5'>
+          <div className='ml-5 text-sm text-red-500'>
             {error && <div className="text-green-500">{error}</div>}
           </div>
           <div className='flex justify-center'>
-            <button type="submit" className='mt-5 h-10 rounded-full font-semibold bg-blue-800 text-white' disabled={loading} style={{ width: '192px' }}>{loading ? 'Please Wait...' : 'RESET PASSWORD'}</button>
+            <button type="submit" className='h-10 mt-5 font-semibold text-white bg-blue-800 rounded-full' disabled={loading} style={{ width: '192px' }}>{loading ? 'Please Wait...' : 'RESET PASSWORD'}</button>
           </div>
         </form>
       </div>

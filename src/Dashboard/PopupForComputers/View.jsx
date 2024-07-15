@@ -25,6 +25,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { styled } from "@mui/material/styles";
 import { format } from "date-fns";
 import axios from "../../api/axios";
+import PrintInformation from "./Print";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialog-paper": {
@@ -57,6 +58,18 @@ function View({ isOpen, onClose, viewPopupData, setViewPopupData, onSubmit }) {
       ? viewPopupData.branch_code.id
       : null,
   });
+  const [redirectToPrint, setRedirectToPrint] = useState(false);
+
+  useEffect(() => {
+    if (redirectToPrint) {
+      window.location.href = "/print";
+    }
+  }, [redirectToPrint]);
+
+  const handleClick = () => {
+    setRedirectToPrint(true);
+  };
+
   useEffect(() => {
     setUser({
       application_content: applicationContent,
@@ -276,10 +289,10 @@ function View({ isOpen, onClose, viewPopupData, setViewPopupData, onSubmit }) {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-40">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-40 z-50">
       <div
         className="bg-white shadow-md rounded-2xl"
-        style={{ maxWidth: "100vh", minWidth: "1000px", maxHeight: "100vh" }}
+        style={{ maxWidth: "100vh", minWidth: "1000px", maxHeight: "100vh"}}
       >
         <div className="flex p-5 bg-blue-500 rounded-tr-2xl rounded-tl-2xl max-h-max">
           <div className="flex-none">
@@ -561,9 +574,13 @@ function View({ isOpen, onClose, viewPopupData, setViewPopupData, onSubmit }) {
           >
             EDIT
           </button>
-          <button className="text-xl text-white bg-blue-500 rounded-3xl h-9 w-36">
+          <button className="text-xl text-white bg-blue-500 rounded-3xl h-9 w-36" onClick={handleClick}>
             PRINT
           </button>
+          {/* The next div is for printing and hidden */}
+          <div className="hidden">
+        <PrintInformation />
+      </div>
           <form onSubmit={handleSubmit}>
             <BootstrapDialog
               onClose={handleClose}

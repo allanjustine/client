@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import smct from '../img/smct.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import bg from '../img/bg.png';
 import { Link } from 'react-router-dom';
 import axios from '../api/axios';
@@ -52,12 +52,12 @@ function LoginForm({ fields }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const email = inputValues[0];
+    const login = inputValues[0];
     const password = inputValues[1];
     setLoading(true);
 
     try {
-      const response = await axios.post('/api/login', { email, password });
+      const response = await axios.post('/api/login', { login, password });
 
       if (response.status === 200) {
         setSuccess('Login successful!');
@@ -101,7 +101,7 @@ function LoginForm({ fields }) {
   };
 
   return (
-    <form className="rounded p-4 w-full max-w-md mt-10" onSubmit={handleSubmit}>
+    <form className="w-full max-w-md p-4 mt-10 rounded" onSubmit={handleSubmit}>
       {fields.map((item, index) => (
         <InputField
           key={index}
@@ -112,9 +112,9 @@ function LoginForm({ fields }) {
           errorMessage={validationErrors[item.text.toLowerCase()]}
         />
       ))}
-      {success && <div className="text-green-500 mb-2">{success}</div>}
+      {success && <div className="mb-2 text-green-500">{success}</div>}
 
-      <div className="flex justify-center flex-col items-center">
+      <div className="flex flex-col items-center justify-center">
         <div className="mb-4">
           <Link to="/forgot" className="hover:underline">
             Forgot Password?
@@ -123,7 +123,7 @@ function LoginForm({ fields }) {
         <div>
           <button
             type="submit"
-            className="w-32 h-10 mt-8 rounded-full font-semibold bg-blue-800 text-white"
+            className="w-32 h-10 mt-8 font-semibold text-white bg-blue-800 rounded-full"
             disabled={loading}
           >
             {loading ? 'Logging In...' : 'LOG IN'}
@@ -136,7 +136,7 @@ function LoginForm({ fields }) {
 
 function Background() {
   return (
-    <div className='absolute inset-0 bg-cover bg-center' style={{ backgroundImage: `url(${bg})`, zIndex: -1 }}>
+    <div className='absolute inset-0 bg-center bg-cover' style={{ backgroundImage: `url(${bg})`, zIndex: -1 }}>
       <div className='absolute inset-0 bg-white opacity-90'></div>
     </div>
   );
@@ -145,7 +145,7 @@ function Background() {
 function LogIn() {
   // Define fields for the login form
   const fields = [
-    { icon: <FontAwesomeIcon icon={faEnvelope} />, text: 'Email' },
+    { icon: <FontAwesomeIcon icon={faUser} />, text: 'Username/Email' },
     { icon: <FontAwesomeIcon icon={faLock} />, text: 'Password' }
   ];
 
@@ -153,9 +153,9 @@ function LogIn() {
     <div className='relative min-h-screen'>
       <Background />
       <div className='flex flex-col items-center pt-20' style={{ zIndex: 1 }}>
-        <img src={smct} alt="SMCT Logo" className='w-72 h-32 m-0 block'></img>
-        <h1 className="text-4xl font-bold mt-5">COMPUTER MONITORING SYSTEM</h1>
-        <h1 className="text-4xl font-medium mt-2">Log In</h1>
+        <img src={smct} alt="SMCT Logo" className='block h-32 m-0 w-72'></img>
+        <h1 className="mt-5 text-xl font-bold md:text-4xl">COMPUTER MONITORING SYSTEM</h1>
+        <h1 className="mt-2 text-4xl font-medium">Log In</h1>
         <LoginForm fields={fields} />
         <p className='mt-2'>Don't have an account yet? <Link to="/signup" className='text-blue-800'>Sign Up</Link></p>
       </div>

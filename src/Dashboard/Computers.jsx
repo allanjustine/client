@@ -5,7 +5,6 @@ import {
   faArrowUpRightFromSquare,
   faGears,
   faQrcode,
-  faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Specs from "./PopupForComputers/Specs";
@@ -26,7 +25,6 @@ import {
   TextField,
   Breadcrumbs,
 } from "@mui/material";
-import Swal from "sweetalert2";
 import Header from "./Header";
 import HomeIcon from "@mui/icons-material/Home";
 import ComputerIcon from "@mui/icons-material/Computer";
@@ -218,7 +216,7 @@ export const TableComponent = () => {
 
   const emptyRows =
     rowsPerPage -
-    Math.min(rowsPerPage, computerUser.length - page * rowsPerPage);
+    Math.min(rowsPerPage, filteredData.length - page * rowsPerPage);
   return (
     <>
       {/* search thru NAME */}

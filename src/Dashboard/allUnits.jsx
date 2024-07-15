@@ -120,7 +120,7 @@ function AllUnits() {
   };
 
   const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, units.length - page * rowsPerPage);
+    rowsPerPage - Math.min(rowsPerPage, filteredUnits.length - page * rowsPerPage);
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -277,7 +277,7 @@ function AllUnits() {
               <TablePagination
                 rowsPerPageOptions={[10, 15, 20]}
                 component="div"
-                count={units.length}
+                count={filteredUnits.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}

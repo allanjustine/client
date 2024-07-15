@@ -1,12 +1,8 @@
 import React from "react";
 import SideBar from "./Sidebar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 import Dashboard from "./Db2";
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
-import Swal from "sweetalert2";
 import Header from "./Header";
 import { Breadcrumbs, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
@@ -71,11 +67,9 @@ function DashBoard() {
               {user && user.data && (
                 <p className="pt-10 text-lg font-normal mr-14">
                   Welcome,{" "}
-                  <Link to="/profile">
                     <b>
                       {user.data.firstName} {user.data.lastName}
                     </b>
-                  </Link>
                 </p>
               )}
             </div>

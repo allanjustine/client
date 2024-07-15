@@ -148,7 +148,7 @@ function Forgot() {
       <Backg />
       <div className="flex flex-col items-center pt-20" style={{ zIndex: 1 }}>
         <img src={smct} alt="SMCT Logo" className="block h-32 m-0 w-72"></img>
-        <h1 className="mt-5 text-4xl font-bold">COMPUTER MONITORING SYSTEM</h1>
+        <h1 className="mt-5 text-xl font-bold md:text-4xl">COMPUTER MONITORING SYSTEM</h1>
         <h1 className="mt-2 text-4xl font-medium">Reset Password</h1>
         <Placeholder
           texts={[

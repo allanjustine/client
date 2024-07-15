@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import smct from "./../../img/smct.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { QRCode } from "react-qr-svg";
 import { toPng } from "html-to-image";
 import CloseIcon from "@mui/icons-material/Close";
@@ -44,7 +42,7 @@ function QrCode({ isOpen, onClose, qrCodeData, setQrCodeData }) {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-40">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-40 z-50">
       <div
         className="bg-white shadow-md rounded-2xl"
         style={{ width: "700px", maxHeight: "100vh" }}

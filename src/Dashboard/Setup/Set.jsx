@@ -229,11 +229,6 @@ function Set() {
                 </button>
               </div>
             </div>
-            <Add
-              isOpen={isAddPopupOpen}
-              onClose={closeAddPopup}
-              onSubmit={setComputerSetRefresh}
-            />
           </div>
           <div className="flex items-center justify-center mt-5 ml-10 mr-10">
             <div className="z-0 w-full max-h-max rounded-xl">
@@ -481,6 +476,15 @@ function Set() {
                   editPopupData={editPopupData}
                   setEditPopupData={setEditPopupData}
                   onSubmit={setComputerSetRefresh}
+                />
+              )}
+
+              {isAddPopupOpen && (
+                <Add
+                  isOpen={isAddPopupOpen}
+                  onClose={closeAddPopup}
+                  onSubmit={setComputerSetRefresh}
+                  refresh={computerSetRefresh}
                 />
               )}
             </div>

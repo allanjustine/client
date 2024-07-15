@@ -1,0 +1,14 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@media print {
+    @page {
+      size: 8.5in 13in;
+      margin: 1cm;
+      orientation: portrait;
+    }
+    body{
+        margin: 0;
+    }
+  }  

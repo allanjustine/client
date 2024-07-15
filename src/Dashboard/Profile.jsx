@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import smct from "../img/smct.png";
+import defaultImg from "../img/profile.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCamera,
-  faRightFromBracket,
   faCircleCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
@@ -318,10 +317,9 @@ function Placeholder() {
     fetchUserProfile();
   }, []);
 
-  const profilePictureUrl = "/profile.png";
   const imageUrl = inputValues.profile_picture
     ? `http://localhost:8000/${inputValues.profile_picture}`
-    : profilePictureUrl;
+    : defaultImg;
   return (
     <div className="w-full max-w-2xl p-4 mt-10 rounded">
       <form onSubmit={handleSubmit} encType="multipart/form-data">

@@ -47,8 +47,6 @@ function EditSet({
   setEditPopupData,
   onSubmit,
 }) {
-  const [user, setUser] = useState(false);
-  const [rows, setRows] = useState([]);
   const [computerUser, setComputerUser] = useState({ data: [] });
   const [computer, setComputer] = useState({
     computer_user: "",
@@ -435,13 +433,27 @@ function EditSet({
                             id="demo-simple-select"
                             value={reason}
                             label="State the reason for the action..."
-                            onChange={(e) => setReason(e.target.value)}
+                            onChange={(e) => {
+                              setReason(e.target.value);
+                              setValidationErrors("");
+                            }}
                           >
                             <MenuItem value="Transfer">Transfer</MenuItem>
                             <MenuItem value="Defective">Defective</MenuItem>
                             <MenuItem value="Delete">Delete</MenuItem>
                           </Select>
                         </FormControl>
+                        <span className="mb-2">
+                          {validationErrors.action && (
+                            <div className="text-red-500">
+                              <ul>
+                                {validationErrors.action.map((error, index) => (
+                                  <li key={index}>{error}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </span>
                       </Box>
                       {reason === "Transfer" && (
                         <Box style={{ marginTop: "10px" }}>
@@ -487,6 +499,19 @@ function EditSet({
                               });
                             }}
                           />
+                          <span className="mb-2">
+                            {validationErrors.computer_user && (
+                              <div className="text-red-500">
+                                <ul>
+                                  {validationErrors.computer_user.map(
+                                    (error, index) => (
+                                      <li key={index}>{error}</li>
+                                    )
+                                  )}
+                                </ul>
+                              </div>
+                            )}
+                          </span>
                           <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DemoContainer components={["DatePicker"]}>
                               <DatePicker
@@ -496,6 +521,19 @@ function EditSet({
                               />
                             </DemoContainer>
                           </LocalizationProvider>
+                          <span className="mb-2">
+                            {validationErrors.date && (
+                              <div className="text-red-500">
+                                <ul>
+                                  {validationErrors.date.map(
+                                    (error, index) => (
+                                      <li key={index}>{error}</li>
+                                    )
+                                  )}
+                                </ul>
+                              </div>
+                            )}
+                          </span>
                         </Box>
                       )}
                       <Grid className="mt-5">
